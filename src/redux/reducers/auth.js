@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, SIGNUP} from '../actions/types';
+import {RESTORE_TOKEN, LOGIN, LOGOUT, SIGNUP} from '../actions/types';
 
 const initialState = {
   isLoading: true,
@@ -8,6 +8,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case RESTORE_TOKEN:
+      return {
+        ...state,
+        isLoading: false,
+        token: action.token,
+      };
     case SIGNUP:
       return {
         ...state,

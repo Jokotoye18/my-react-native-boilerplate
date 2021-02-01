@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {LOGIN, LOGOUT, SIGNUP} from './types';
+import {RESTORE_TOKEN, LOGIN, LOGOUT, SIGNUP} from './types';
 
 export const signup = (signupData) => (dispatch) => {
   dispatch({

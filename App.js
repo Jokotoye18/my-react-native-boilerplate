@@ -1,15 +1,18 @@
 import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
 
+import NavigationContainerComponent from './src/navigations/Index';
+
 const App = () => {
   return (
-    <Provider store={store}>
-      <SafeAreaView>
-        <Text>Home</Text>
-      </SafeAreaView>
-    </Provider>
+    <>
+      <StatusBar animated={true} backgroundColor='#000' barStyle='light-content' showHideTransition='slide' />
+      <Provider store={store}>
+        <NavigationContainerComponent />
+      </Provider>
+    </>
   );
 };
 
