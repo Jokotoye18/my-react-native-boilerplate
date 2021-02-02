@@ -1,21 +1,29 @@
-import axios from 'axios';
-import {RESTORE_TOKEN, LOGIN, LOGOUT, SIGNUP} from './types';
+// import axios from 'axios';
+import {RESTORE_TOKEN, LOGIN, LOGOUT, SIGNUP} from "./types";
 
-export const signup = (signupData) => (dispatch) => {
+export const getUser = (token) => (dispatch) => {
+  dispatch({
+    type: RESTORE_TOKEN,
+    payload: token,
+  });
+};
+
+export const signup = () => (dispatch) => {
   dispatch({
     type: SIGNUP,
     payload: {
-      user: 'Ademola',
-      token: '1234567890',
+      user: "Ademola",
+      token: "1234567890",
     },
   });
 };
-export const login = (signupData) => (dispatch) => {
+
+export const login = () => (dispatch) => {
   dispatch({
     type: LOGIN,
     payload: {
-      user: 'Ademola',
-      token: '1234567890',
+      user: "Ademola",
+      token: "1234567890",
     },
   });
 };

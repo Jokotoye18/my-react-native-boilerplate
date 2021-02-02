@@ -1,4 +1,4 @@
-import {RESTORE_TOKEN, LOGIN, LOGOUT, SIGNUP} from '../actions/types';
+import {RESTORE_TOKEN, LOGIN, LOGOUT, SIGNUP} from "../actions/types";
 
 const initialState = {
   isLoading: true,

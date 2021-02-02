@@ -1,28 +1,24 @@
-import React, {useEffect, useCallback} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {NavigationContainer} from '@react-navigation/native';
-import AuthStackNavigator from './AuthStackNavigator';
-import RootStackNavigator from './RootStackNavigator';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import SplashScreen from '../screens/splash-screen/Index';
-import {RESTORE_TOKEN} from '../redux/actions/types';
+/* eslint-disable prettier/prettier */
+// third party import
+import React, {useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {NavigationContainer} from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+// local import
+import AuthStackNavigator from "./AuthStackNavigator";
+import RootStackNavigator from "./RootStackNavigator";
+import SplashScreen from "../screens/splash-screen/Index";
+import {getUser} from "../redux/actions/auth";
 
 const Index = () => {
   const auth = useSelector((state) => state.auth);
-  console.log(auth);
   const dispatch = useDispatch();
-
-  const handleDispath = useCallback(
-    (userToken) => dispatch({type: RESTORE_TOKEN, token: userToken}),
-    [dispatch],
-  );
 
   useEffect(() => {
     const bootstrapAsync = async () => {
-      let userToken = null;
+      let userToken;
       try {
-        userToken = await AsyncStorage.getItem('userToken');
+        userToken = await AsyncStorage.getItem("userToken");
       } catch (e) {
         // Restoring token failed
       }
@@ -31,11 +27,11 @@ const Index = () => {
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-      handleDispath(userToken);
+      dispatch(getUser(userToken));
     };
 
     bootstrapAsync();
-  }, []);
+  }, [dispatch]);
 
   if (auth.isLoading) {
     return <SplashScreen />;
@@ -43,7 +39,7 @@ const Index = () => {
 
   return (
     <NavigationContainer>
-      {auth.token === null ? <AuthStackNavigator /> : <RootStackNavigator />}
+      {!auth.token ? <AuthStackNavigator /> : <RootStackNavigator />}
     </NavigationContainer>
   );
 };

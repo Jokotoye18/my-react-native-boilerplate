@@ -1,19 +1,22 @@
-import React from 'react';
-import {StatusBar} from 'react-native';
-import {Provider} from 'react-redux';
-import store from './src/redux/store';
+import React from "react";
+import {StatusBar} from "react-native";
+import {Provider} from "react-redux";
+import store from "./src/redux/store";
 
-import NavigationContainerComponent from './src/navigations/Index';
+import NavigationContainerComponent from "./src/navigations/Index";
 
-const App = () => {
-  return (
-    <>
-      <StatusBar animated={true} backgroundColor='#000' barStyle='light-content' showHideTransition='slide' />
-      <Provider store={store}>
-        <NavigationContainerComponent />
-      </Provider>
-    </>
-  );
-};
+const App = () => (
+  <>
+    <StatusBar
+      animated
+      backgroundColor="#000"
+      barStyle="light-content"
+      showHideTransition="slide"
+    />
+    <Provider store={store}>
+      <NavigationContainerComponent />
+    </Provider>
+  </>
+);
 
 export default App;
