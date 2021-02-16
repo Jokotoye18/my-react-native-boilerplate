@@ -8,15 +8,15 @@ import {
   DefaultTheme,
 } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SplashScreen from "react-native-splash-screen";
 // local import
 import AuthStackNavigator from "./AuthStackNavigator";
 import RootStackNavigator from "./RootStackNavigator";
-import SplashScreen from "../screens/splash-screen/Index";
 import {getUser} from "../redux/actions/auth";
 import {lightTheme, darkTheme} from "../constants/themes";
 
 const Index = () => {
-  const {isLoading, token} = useSelector((state) => state.auth);
+  const {token} = useSelector((state) => state.auth);
   const {scheme} = useSelector((state) => state.colorScheme);
 
   const dispatch = useDispatch();
@@ -36,13 +36,11 @@ const Index = () => {
       // screen will be unmounted and thrown away.
       dispatch(getUser(userToken));
     };
-
-    bootstrapAsync();
+    setTimeout(() => {
+      bootstrapAsync();
+      SplashScreen.hide();
+    }, 1000);
   }, [dispatch]);
-
-  if (isLoading) {
-    return <SplashScreen />;
-  }
 
   return (
     <NavigationContainer

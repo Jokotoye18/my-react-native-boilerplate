@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {StatusBar} from "react-native";
 import {Provider} from "react-redux";
 // local import

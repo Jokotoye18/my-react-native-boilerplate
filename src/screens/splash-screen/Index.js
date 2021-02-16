@@ -1,5 +1,6 @@
 import React from "react";
 import {View, ActivityIndicator} from "react-native";
+import LottieView from "lottie-react-native";
 
 const Index = () => (
   <View
@@ -8,7 +9,11 @@ const Index = () => (
       justifyContent: "center",
       alignItems: "center",
     }}>
-    <ActivityIndicator animating size="large" color="#000" />
+    <LottieView
+      source={require("../../assets/lottie-files/loader.json")}
+      autoPlay
+      loop
+    />
   </View>
 );
 
