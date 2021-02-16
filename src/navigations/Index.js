@@ -2,16 +2,23 @@
 // third party import
 import React, {useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {NavigationContainer} from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DarkTheme,
+  DefaultTheme,
+} from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // local import
 import AuthStackNavigator from "./AuthStackNavigator";
 import RootStackNavigator from "./RootStackNavigator";
 import SplashScreen from "../screens/splash-screen/Index";
 import {getUser} from "../redux/actions/auth";
+import {lightTheme, darkTheme} from "../constants/themes";
 
 const Index = () => {
-  const auth = useSelector((state) => state.auth);
+  const {isLoading, token} = useSelector((state) => state.auth);
+  const {scheme} = useSelector((state) => state.colorScheme);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,13 +40,14 @@ const Index = () => {
     bootstrapAsync();
   }, [dispatch]);
 
-  if (auth.isLoading) {
+  if (isLoading) {
     return <SplashScreen />;
   }
 
   return (
-    <NavigationContainer>
-      {!auth.token ? <AuthStackNavigator /> : <RootStackNavigator />}
+    <NavigationContainer
+      theme={scheme === "dark" ? darkTheme : lightTheme}>
+      {!token ? <AuthStackNavigator /> : <RootStackNavigator />}
     </NavigationContainer>
   );
 };

@@ -5,7 +5,6 @@ module.exports = {
   // extends: '@react-native-community',
   env: {
     es6: true,
-    browser: true,
     node: true,
     jest: true,
   },
@@ -27,7 +26,6 @@ module.exports = {
   ],
   rules: {
     "no-unused-vars": ["warn"],
-    "prettier/prettier": ["error", {singleQuote: false}],
     "react/jsx-filename-extension": [
       1,
       {extensions: [".js", ".jsx"]},
@@ -39,5 +37,6 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/display-name": 0,
+    "prettier/prettier": ["error", {singleQuote: false}],
   },
 };
