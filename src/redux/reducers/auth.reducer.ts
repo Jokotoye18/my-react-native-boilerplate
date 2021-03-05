@@ -1,34 +1,37 @@
-import {RESTORE_TOKEN, LOGIN, LOGOUT, SIGNUP} from "../actions/types";
+import {
+  AuthActionTypes,
+  AuthState,
+} from "../actions/auth/types.action";
 
-const initialState = {
+const initialState: AuthState = {
   isLoading: true,
   user: null,
   token: null,
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action: AuthActionTypes) => {
   switch (action.type) {
-    case RESTORE_TOKEN:
+    case 'RESTORE_TOKEN':
       return {
         ...state,
         isLoading: false,
-        token: action.token,
+        token: action.payload,
       };
-    case SIGNUP:
-      return {
-        ...state,
-        isLoading: false,
-        user: action.payload.user,
-        token: action.payload.token,
-      };
-    case LOGIN:
+    case 'SIGNUP':
       return {
         ...state,
         isLoading: false,
         user: action.payload.user,
         token: action.payload.token,
       };
-    case LOGOUT:
+    case 'LOGIN':
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload.user,
+        token: action.payload.token,
+      };
+    case 'LOGOUT':
       return {
         ...state,
         isLoading: false,

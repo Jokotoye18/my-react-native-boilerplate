@@ -2,13 +2,19 @@ import React from "react";
 import {View, Text, Button} from "react-native";
 import {useDispatch} from "react-redux";
 
-import {login} from "../redux/actions/auth";
+import {login} from "../redux/actions";
+import {AppDispatch} from "../redux";
 
 const AuthStackNavigator = () => {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    dispatch(login());
+    const user = {
+      firstName: "Ademola",
+      lastName: "Jokotoye",
+      email: "jokotoye@gmail.com",
+    };
+    dispatch(login(user));
   };
 
   return (

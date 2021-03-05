@@ -1,14 +1,18 @@
 /* eslint-disable prettier/prettier */
 import {createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
-import rootReducer from "./reducers";
+import {rootReducer} from "./reducers";
 
 const initialState = {};
 
 const middleware = [thunk];
 
-export default createStore(
+const store = createStore(
   rootReducer,
   initialState,
   applyMiddleware(...middleware)
 );
+
+export type AppDispatch = typeof store.dispatch;
+
+export {store};

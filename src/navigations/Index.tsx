@@ -12,18 +12,21 @@ import SplashScreen from "react-native-splash-screen";
 // local import
 import AuthStackNavigator from "./AuthStackNavigator";
 import RootStackNavigator from "./RootStackNavigator";
-import {getUser} from "../redux/actions/auth";
+import {getUser} from "../redux/actions/auth/auth.action";
 import {lightTheme, darkTheme} from "../constants/themes";
+import {AppState} from "../redux/reducers";
 
 const Index = () => {
-  const {token} = useSelector((state) => state.auth);
-  const {scheme} = useSelector((state) => state.colorScheme);
+  const {token} = useSelector((state: AppState) => state.auth);
+  const {scheme} = useSelector(
+    (state: AppState) => state.colorScheme
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const bootstrapAsync = async () => {
-      let userToken;
+      let userToken = null;
       try {
         userToken = await AsyncStorage.getItem("userToken");
       } catch (e) {
@@ -45,7 +48,11 @@ const Index = () => {
   return (
     <NavigationContainer
       theme={scheme === "dark" ? darkTheme : lightTheme}>
-      {!token ? <AuthStackNavigator /> : <RootStackNavigator />}
+      {token === null ? (
+        <AuthStackNavigator />
+      ) : (
+        <RootStackNavigator />
+      )}
     </NavigationContainer>
   );
 };
