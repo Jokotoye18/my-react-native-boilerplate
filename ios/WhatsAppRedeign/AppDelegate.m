@@ -53,6 +53,11 @@ static void InitializeFlipper(UIApplication *application) {
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+
+  // [RNSplashScreen show];  // here
+  [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
+    return YES;
 }
+
 
 @end
