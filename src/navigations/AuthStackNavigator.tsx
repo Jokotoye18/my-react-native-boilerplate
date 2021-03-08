@@ -3,9 +3,8 @@ import {View, Text, Button} from "react-native";
 import {useDispatch} from "react-redux";
 
 import {login} from "../redux/actions";
-import {AppDispatch} from "../redux";
 
-const AuthStackNavigator = () => {
+export const AuthStackNavigator = () => {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
@@ -29,5 +28,3 @@ const AuthStackNavigator = () => {
     </View>
   );
 };
-
-export default AuthStackNavigator;
