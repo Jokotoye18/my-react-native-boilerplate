@@ -3,6 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "RNSplashScreen.h"  // here
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -54,8 +55,9 @@ static void InitializeFlipper(UIApplication *application) {
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
 
-  // [RNSplashScreen show];  // here
-  [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
+    [RNSplashScreen show];  // here
+    // or
+    //[RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
     return YES;
 }
 
