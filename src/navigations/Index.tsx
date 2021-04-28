@@ -10,10 +10,8 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import SplashScreen from "react-native-splash-screen";
 // local import
-import AuthStackNavigator from "./AuthStackNavigator";
-import RootStackNavigator from "./RootStackNavigator";
+import {AuthStackNavigator, RootStackNavigator} from "./index";
 import {getUser} from "../redux/actions/auth/auth.action";
-import {lightTheme, darkTheme} from "../constants/themes";
 import {AppState} from "../redux/reducers";
 
 const Index = () => {
@@ -47,7 +45,7 @@ const Index = () => {
 
   return (
     <NavigationContainer
-      theme={scheme === "dark" ? darkTheme : lightTheme}>
+      theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
       {token === null ? (
         <AuthStackNavigator />
       ) : (

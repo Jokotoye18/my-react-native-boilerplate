@@ -2,12 +2,14 @@ import React, {useState} from "react";
 import {View, Text, Button, Switch} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {useTheme} from "@react-navigation/native";
-import {AppState} from '../redux/reducers';
+import {AppState} from "../redux/reducers";
 
 import {logout, switchColorScheme} from "../redux/actions";
 
-const RootStackNavigator = () => {
-  const {scheme} = useSelector((state: AppState) => state.colorScheme);
+export const RootStackNavigator = () => {
+  const {scheme} = useSelector(
+    (state: AppState) => state.colorScheme
+  );
   const dispatch = useDispatch();
   const {colors} = useTheme();
 
@@ -36,5 +38,3 @@ const RootStackNavigator = () => {
     </View>
   );
 };
-
-export default RootStackNavigator;
